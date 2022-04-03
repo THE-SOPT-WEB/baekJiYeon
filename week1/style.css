@@ -93,6 +93,8 @@ aside h3 {
 
 .cart {
   flex: 1;
+  position: sticky;
+  top: 30px;
 }
 
 .cart__items,
