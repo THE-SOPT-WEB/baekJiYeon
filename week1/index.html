@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
     />
     <link rel="stylesheet" href="style.css" />
@@ -13,13 +18,17 @@
   </head>
   <body>
     <header>
+      <div class="header__btn-group">
+        <button class="sidebar__brand-btn active">쉐이크쉑</button>
+        <button class="sidebar__brand-btn">맥도날드</button>
+      </div>
       <h1>🍔 햄식이를 도와줘 🍔</h1>
     </header>
     <main>
       <aside class="sidebar">
         <h3>다른 거 먹자</h3>
-        <button class="sidebar__btn-group">쉐이크쉑</button>
-        <button class="sidebar__btn-group">맥도날드</button>
+        <button class="sidebar__brand-btn active">쉐이크쉑</button>
+        <button class="sidebar__brand-btn">맥도날드</button>
       </aside>
       <section class="burger">
         <article class="burger__card">
@@ -191,10 +200,10 @@
       </section>
       <aside class="cart">
         <div class="cart__items">
-          <h3>장바구니</h3>
+          <h3>🛒 장바구니</h3>
         </div>
         <div class="cart__sum">
-          <h3>누적 금액</h3>
+          <h3>💵 누적 금액</h3>
           <span>0원</span>
         </div>
         <div class="cart__btn-group">

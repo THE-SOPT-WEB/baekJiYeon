@@ -4,6 +4,11 @@
   padding: 0;
 }
 
+body,
+button {
+  font-family: Pretendard;
+}
+
 button {
   cursor: pointer;
   border: 0;
@@ -11,7 +16,14 @@ button {
   background-color: #fff;
 }
 
+button:hover {
+  font-weight: 600;
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
 header {
+  display: flex;
+  align-items: center;
   background-color: #60ae2b;
   padding: 20px 0;
 }
@@ -20,7 +32,20 @@ header h1 {
   color: #fff;
   font-size: 30px;
   font-weight: 600;
-  text-align: center;
+  margin: 0 auto;
+}
+
+.header__btn-group {
+  visibility: hidden;
+  width: 100px;
+  padding: 10px 0;
+  margin-left: 30px;
+  position: absolute;
+  float: left;
+}
+
+.header__btn-group button:first-child {
+  margin-bottom: 5px;
 }
 
 main {
@@ -46,12 +71,18 @@ aside h3 {
 
 .sidebar {
   flex: 0.5;
+  min-width: 156px;
 }
 
-.sidebar__btn-group {
+.sidebar__brand-btn {
   width: 100%;
   padding: 5px;
   border-radius: 5px;
+}
+
+.sidebar__brand-btn.active {
+  color: #fff;
+  background-color: #000;
 }
 
 .burger {
@@ -61,6 +92,7 @@ aside h3 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  margin: auto 20px;
 }
 
 .burger__card {
@@ -111,6 +143,7 @@ aside h3 {
   flex: 1;
   position: sticky;
   top: 30px;
+  min-width: 235px;
 }
 
 .cart__items,
@@ -130,4 +163,31 @@ aside h3 {
 
 .cart__btn-group button + button {
   margin-left: 15px;
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar__brand-btn {
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  .header__btn-group {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 1100px) {
+  .burger {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .burger__card {
+    width: 400px;
+    margin: 0 auto;
+  }
 }
