@@ -16,7 +16,8 @@ button {
   background-color: #fff;
 }
 
-button:hover {
+button:hover,
+a:hover {
   font-weight: 600;
   box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
 }
@@ -163,6 +164,60 @@ aside h3 {
 
 .cart__btn-group button + button {
   margin-left: 15px;
+}
+
+.modal__background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.modal__background.show,
+.modal__body.show {
+  display: block;
+}
+
+.modal__body {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 25%;
+  min-width: fit-content;
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.modal__body p {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.modal__btn-group * {
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.modal__btn-group a {
+  text-decoration: none;
+  color: #000;
+  background-color: skyblue;
+  margin-right: 10px;
+}
+
+.modal__btn-group button {
+  background-color: pink;
 }
 
 @media (max-width: 1200px) {
