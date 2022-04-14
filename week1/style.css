@@ -147,10 +147,19 @@ aside h3 {
   min-width: 235px;
 }
 
-.cart__items,
+.cart__list,
 .cart__sum {
   padding-bottom: 30px;
   border-bottom: 2px dashed #000;
+}
+
+.cart__item {
+  list-style: none;
+}
+
+.item__delete-btn {
+  font-weight: 600;
+  background-color: transparent;
 }
 
 .cart__btn-group {
