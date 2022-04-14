@@ -28,6 +28,13 @@ closeBtn.addEventListener("click", () => {
   modalBody.classList.remove("show");
 });
 
+// 취소하기 버튼 누르면 장바구니 비우기
+cancelBtn.addEventListener("click", () => {
+  while (cartList.hasChildNodes()) {
+    cartList.removeChild(cartList.firstChild);
+  }
+});
+
 // 장바구니에 태그 동적으로 삽입하고 삭제하기
 const addBurger = (index) => {
   const li = document.createElement("li");
