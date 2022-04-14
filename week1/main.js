@@ -11,8 +11,9 @@ const modalBody = $(".modal__body");
 
 burgerCard.forEach((card, index) => {
   card.addEventListener("click", (e) => {
-    console.log(e.target + index);
-    addBurger(index);
+    const burgerName = card.querySelector(".burger__name").innerText;
+    const burgerPrice = card.querySelector(".burger__price").innerText;
+    addBurger(index, burgerName, burgerPrice);
   });
 });
 
@@ -36,7 +37,7 @@ cancelBtn.addEventListener("click", () => {
 });
 
 // 장바구니에 태그 동적으로 삽입하고 삭제하기
-const addBurger = (index) => {
+const addBurger = (index, burgerName, burgerPrice) => {
   const li = document.createElement("li");
   const name = document.createElement("span");
   const count = document.createElement("input");
@@ -44,11 +45,18 @@ const addBurger = (index) => {
   const deleteBtn = document.createElement("button");
 
   li.setAttribute("class", "cart__item");
+
   name.setAttribute("class", "item__name");
+  name.innerText = burgerName;
+
   count.setAttribute("class", "item__count");
   count.setAttribute("type", "number");
   count.setAttribute("min", 1);
+  count.setAttribute("value", 1);
+
   price.setAttribute("class", "item__price");
+  price.innerText = burgerPrice;
+
   deleteBtn.setAttribute("class", "item__delete-btn");
   deleteBtn.innerText = "X";
 
