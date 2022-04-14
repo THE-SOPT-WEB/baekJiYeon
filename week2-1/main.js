@@ -61,7 +61,7 @@ function goNextStep(score, image) {
   image.src = quizList[currentStep].src;
 }
 
-function attachEvent({ score, answer, image }) {
+function attachEvent({ score, answer, image, shuffleBtn }) {
   answer.addEventListener("click", (e) => {
     if (e.target instanceof HTMLElement) {
       const userAnswer = e.target.innerText;
@@ -75,6 +75,10 @@ function attachEvent({ score, answer, image }) {
         showModal(`틀렸어 나는 ${userAnswer} 아니야 !! 🤬`);
       }
     }
+  });
+
+  shuffleBtn.addEventListener("click", () => {
+    initGame(score, image);
   });
 }
 
@@ -95,5 +99,6 @@ window.onload = () => {
     score: $(".scoreBoard__score"),
     answer: $("ul.answer__list"),
     image: $(".imageBoard > img"),
+    shuffleBtn: $(".buttonList__shuffle"),
   });
 };
