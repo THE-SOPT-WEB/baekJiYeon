@@ -1,6 +1,17 @@
-import './style.css'
+const $ = (selector) => document.querySelector(selector);
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+const orderBtn = $(".cart__order-btn");
+const cancelBtn = $(".cart__cancel-btn");
+const closeBtn = $(".modal__close-btn");
+const modalBackground = $(".modal__background");
+const modalBody = $(".modal__body");
+
+orderBtn.addEventListener("click", () => {
+  modalBackground.classList.add("show");
+  modalBody.classList.add("show");
+});
+
+closeBtn.addEventListener("click", () => {
+  modalBackground.classList.remove("show");
+  modalBody.classList.remove("show");
+});
