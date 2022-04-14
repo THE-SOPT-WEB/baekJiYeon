@@ -154,12 +154,33 @@ aside h3 {
 }
 
 .cart__item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
   list-style: none;
 }
 
+.item__name,
+.item__price {
+  flex: 1;
+  min-width: fit-content;
+}
+
+.item__count {
+  flex: 1;
+  width: 50px;
+  max-width: fit-content;
+}
+
 .item__delete-btn {
+  flex: 1;
+  text-align: right;
   font-weight: 600;
   background-color: transparent;
+}
+
+.item__delete-btn:hover {
+  box-shadow: none;
 }
 
 .cart__btn-group {
