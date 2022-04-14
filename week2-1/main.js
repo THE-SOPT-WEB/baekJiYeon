@@ -47,8 +47,10 @@ function showModal(modalContent, keepOpen) {
   }
 }
 
-function goNextStep(image) {
+function goNextStep(score, image) {
+  // 점수 올리기, 이미지 바꿔주기
   currentStep++;
+  score.innerText = +score.innerText + 1;
 
   // 게임이 끝난 상태
   if (currentStep === quizList.length) {
@@ -59,7 +61,7 @@ function goNextStep(image) {
   image.src = quizList[currentStep].src;
 }
 
-function attachEvent({ answer, image }) {
+function attachEvent({ score, answer, image }) {
   answer.addEventListener("click", (e) => {
     if (e.target instanceof HTMLElement) {
       const userAnswer = e.target.innerText;
@@ -67,7 +69,7 @@ function attachEvent({ answer, image }) {
       if (userAnswer == realAnswer) {
         showModal("나를 알아주다니 고마워💜");
         setTimeout(() => {
-          goNextStep(image);
+          goNextStep(score, image);
         }, 500);
       } else {
         showModal(`틀렸어 나는 ${userAnswer} 아니야 !! 🤬`);
