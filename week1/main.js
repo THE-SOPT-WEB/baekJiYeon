@@ -15,13 +15,28 @@ const parsePriceToNumber = (price) => {
   return +removedComma;
 };
 
+// 누적 금액 변동
+const changeSumText = (type, price) => {
+  switch (type) {
+    case "plus":
+      sum += parsePriceToNumber(price);
+      break;
+    case "minus":
+      sum -= parsePriceToNumber(price);
+      break;
+    case "reset":
+      sum = price;
+      break;
+  }
+  $(".cart__sum span").innerText = sum ? `${sum.toLocaleString()}원` : "0원";
+};
+
 burgerCard.forEach((card) => {
   card.addEventListener("click", (e) => {
     const burgerName = card.querySelector(".burger__name").innerText;
     const burgerPrice = card.querySelector(".burger__price").innerText;
     addBurger(burgerName, burgerPrice);
-    sum += parsePriceToNumber(burgerPrice);
-    changeSumText();
+    changeSumText("plus", burgerPrice);
   });
 });
 
@@ -44,8 +59,7 @@ cancelBtn.addEventListener("click", () => {
   while (cartList.hasChildNodes()) {
     cartList.removeChild(cartList.firstChild);
   }
-  sum = 0;
-  changeSumText();
+  changeSumText("reset", 0);
 });
 
 // 장바구니에 태그 동적으로 삽입하고 삭제하기
@@ -81,11 +95,6 @@ const addBurger = (burgerName, burgerPrice) => {
   deleteBtn.addEventListener("click", () => {
     const itemPrice = li.querySelector(".item__price").innerText;
     li.remove();
-    sum -= parsePriceToNumber(itemPrice);
-    changeSumText();
+    changeSumText("minus", itemPrice);
   });
-};
-
-const changeSumText = () => {
-  $(".cart__sum span").innerText = sum ? `${sum.toLocaleString()}원` : "0원";
 };
