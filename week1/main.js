@@ -27,8 +27,10 @@ burgerCard.forEach((card) => {
 
 // 모달 보이게 설정
 orderBtn.addEventListener("click", () => {
-  modalBackground.classList.add("show");
-  modalBody.classList.add("show");
+  if (sum) {
+    modalBackground.classList.add("show");
+    modalBody.classList.add("show");
+  } else alert("장바구니가 비어있어서 주문할 수 없어요!");
 });
 
 // 모달 안 보이게 설정
