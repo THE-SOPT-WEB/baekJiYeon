@@ -23,7 +23,8 @@ const changeSum = () => {
     const price = parsePriceToNumber(
       item.querySelector(".item__price").innerText
     );
-    priceList.push(price);
+    const count = item.querySelector(".item__count").value;
+    priceList.push(price * count);
   });
   const sum = priceList.reduce((acc, cur) => acc + cur, 0);
   $(".cart__sum span").innerText = `${sum.toLocaleString()}원`;
@@ -89,6 +90,10 @@ const addBurger = (burgerName, burgerPrice) => {
   cartItem.appendChild(countInput);
   cartItem.appendChild(priceSpan);
   cartItem.appendChild(deleteBtn);
+
+  countInput.addEventListener("change", () => {
+    changeSum();
+  });
 
   deleteBtn.addEventListener("click", () => {
     cartItem.remove();
