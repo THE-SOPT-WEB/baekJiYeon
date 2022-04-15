@@ -26,7 +26,7 @@ const changeSum = () => {
     const count = item.querySelector(".item__count").value;
     priceList.push(price * count);
   });
-  const sum = priceList.reduce((acc, cur) => acc + cur, 0);
+  sum = priceList.reduce((acc, cur) => acc + cur, 0);
   $(".cart__sum span").innerText = `${sum.toLocaleString()}원`;
 };
 
