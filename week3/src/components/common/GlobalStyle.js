@@ -3,6 +3,13 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
+
+  @font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
   
   html,
   body {
@@ -13,8 +20,8 @@ const GlobalStyle = createGlobalStyle`
   #root {
     display: flex;
     flex-direction: column;
-    margin: 0 8%;
     min-height: 100vh;
+    background-color: #222;
   }
 
   html {
@@ -23,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
+  }
+
+  body, button {
+    font-family: GongGothicMedium;
   }
   
   button {
