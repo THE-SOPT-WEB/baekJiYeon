@@ -1,1 +1,17 @@
 export { default as imgHome } from "./img_home.png";
+export { default as img8Inch } from "./img_8_inch.jpg";
+export { default as img72Inch } from "./img_72_inch.png";
+export { default as imgGoogling } from "./img_googling.jpg";
+export { default as imgCopyAndPaste } from "./img_copy_and_paste.jpeg";
+export { default as imgShutDown } from "./img_shut_down.jpg";
+export { default as imgLoading } from "./img_loading.png";
+export { default as imgLeftHand } from "./img_left_hand.jpeg";
+export { default as imgTouchPad } from "./img_touch_pad.jpg";
+export { default as imgKeyboard } from "./img_keyboard.jpg";
+export { default as imgVoice } from "./img_voice.jpg";
+export { default as imgW98Coding } from "./img_w98_coding.jpg";
+export { default as imgW98Respond } from "./img_w98_respond.png";
+export { default as imgSkill } from "./img_skill.png";
+export { default as imgStock } from "./img_stock.jpg";
+export { default as imgProductManager } from "./img_product_manager.png";
+export { default as imgProgrammer } from "./img_programmer.png";
