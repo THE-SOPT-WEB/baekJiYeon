@@ -5,7 +5,7 @@ function Game() {
   return (
     <StyledGame>
       <header>
-        <h1>킹받는 상황 8강</h1>
+        <h1>킹받는 개발 상황 8강</h1>
         <h2>1 / 4</h2>
       </header>
       <main>

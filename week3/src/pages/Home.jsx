@@ -6,8 +6,8 @@ function Home() {
   return (
     <StyledHome>
       <header>
-        <h1>개발자 밸런스 게임</h1>
-        <h2>더 킹받는 상황을 골라주세요!</h2>
+        <h1>킹받는 개발 월드컵</h1>
+        <h2>더 킹받는 개발 상황을 골라주세요!</h2>
       </header>
       <img src={imgHome} alt="" />
       <Link to="/game">START</Link>
