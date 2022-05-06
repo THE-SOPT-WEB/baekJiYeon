@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   img72Inch,
@@ -10,10 +11,11 @@ import {
   imgTouchPad,
   imgVoice,
 } from 'assets';
-import { useNavigate } from 'react-router-dom';
 
 function Game() {
-  const quarterFinalList = [
+  const navigate = useNavigate();
+  const [matchIndex, setMatchIndex] = useState(0);
+  const [matchItemList, setMatchItemList] = useState([
     { id: 1, img: imgGoogling, caption: '구글링 없이 개발하기' },
     { id: 2, img: imgCopyAndPaste, caption: '복붙 없이 개발하기' },
     { id: 3, img: img72Inch, caption: '1k 해상도 72인치 모니터로 코딩하기' },
@@ -22,14 +24,10 @@ function Game() {
     { id: 6, img: imgVoice, caption: '음성인식으로 코딩하기' },
     { id: 7, img: imgLeftHand, caption: '왼손으로만 마우스 쓰기' },
     { id: 8, img: imgTouchPad, caption: '노트북 터치 패드만 쓰기' },
-  ];
-
-  const navigate = useNavigate();
-  const [matchIndex, setMatchIndex] = useState(0);
-  const [matchItemList, setMatchItemList] = useState(quarterFinalList);
+  ]);
   const [nextMatchItemList, setNextMatchItemList] = useState([]);
 
-  const matchItemListToMatchList = (matchItemList) => {
+  const makeMatchList = (matchItemList) => {
     const matchList = [];
     let match = [];
     matchItemList.forEach((item, i) => {
@@ -42,11 +40,11 @@ function Game() {
     return matchList;
   };
 
-  const [matchList, setMatchList] = useState(() => matchItemListToMatchList(matchItemList));
+  const [matchList, setMatchList] = useState(() => makeMatchList(matchItemList));
 
   useEffect(() => {
     if (matchList.length === matchIndex) {
-      if (matchIndex === 1) {
+      if (matchList.length === 1) {
         navigate('/result', { state: { result: nextMatchItemList[0] } });
         return;
       }
@@ -57,7 +55,7 @@ function Game() {
 
   useEffect(() => {
     setNextMatchItemList([]);
-    setMatchList(() => matchItemListToMatchList(matchItemList));
+    setMatchList(() => makeMatchList(matchItemList));
   }, [matchItemList]);
 
   return (
