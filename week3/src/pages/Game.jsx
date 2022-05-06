@@ -1,23 +1,90 @@
-import { imgCopyAndPaste, imgGoogling } from "assets";
-import styled from "styled-components";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import {
+  img72Inch,
+  img8Inch,
+  imgCopyAndPaste,
+  imgGoogling,
+  imgKeyboard,
+  imgLeftHand,
+  imgTouchPad,
+  imgVoice,
+} from 'assets';
+import { useNavigate } from 'react-router-dom';
 
 function Game() {
+  const quarterFinalList = [
+    { id: 1, img: imgGoogling, caption: '구글링 없이 개발하기' },
+    { id: 2, img: imgCopyAndPaste, caption: '복붙 없이 개발하기' },
+    { id: 3, img: img72Inch, caption: '1k 해상도 72인치 모니터로 코딩하기' },
+    { id: 4, img: img8Inch, caption: '4k 해상도 8인치 모니터로 코딩하기' },
+    { id: 5, img: imgKeyboard, caption: '천지인 자판으로 코딩하기' },
+    { id: 6, img: imgVoice, caption: '음성인식으로 코딩하기' },
+    { id: 7, img: imgLeftHand, caption: '왼손으로만 마우스 쓰기' },
+    { id: 8, img: imgTouchPad, caption: '노트북 터치 패드만 쓰기' },
+  ];
+
+  const navigate = useNavigate();
+  const [matchIndex, setMatchIndex] = useState(0);
+  const [matchItemList, setMatchItemList] = useState(quarterFinalList);
+  const [nextMatchItemList, setNextMatchItemList] = useState([]);
+
+  const matchItemListToMatchList = (matchItemList) => {
+    const matchList = [];
+    let match = [];
+    matchItemList.forEach((item, i) => {
+      if (i % 2 === 0) {
+        match = [item];
+        return;
+      }
+      matchList.push([...match, item]);
+    });
+    return matchList;
+  };
+
+  const [matchList, setMatchList] = useState(() => matchItemListToMatchList(matchItemList));
+
+  useEffect(() => {
+    if (matchList.length === matchIndex) {
+      if (matchIndex === 1) {
+        navigate('/result', { state: { result: nextMatchItemList[0] } });
+        return;
+      }
+      setMatchIndex(0);
+      setMatchItemList([...nextMatchItemList]);
+    }
+  }, [matchIndex, matchList, nextMatchItemList, navigate]);
+
+  useEffect(() => {
+    setNextMatchItemList([]);
+    setMatchList(() => matchItemListToMatchList(matchItemList));
+  }, [matchItemList]);
+
   return (
     <StyledGame>
       <header>
-        <h1>킹받는 개발 상황 8강</h1>
-        <h2>1 / 4</h2>
+        <h1>킹받는 개발 상황 {matchList.length === 1 ? '결승' : `${matchList.length * 2}강`}</h1>
+        <h2>
+          {matchIndex + 1} / {matchList.length}
+        </h2>
       </header>
       <main>
-        <figure>
-          <img src={imgGoogling} alt="" />
-          <figcaption>구글링 없이 개발</figcaption>
-        </figure>
+        {matchList[matchIndex]?.map((matchItem) => {
+          const { id, img, caption } = matchItem;
+          return (
+            <figure
+              key={id}
+              onClick={() => {
+                setNextMatchItemList([...nextMatchItemList, matchItem]);
+                setMatchIndex((prev) => prev + 1);
+              }}
+            >
+              <img src={img} alt={caption} />
+              <figcaption>{caption}</figcaption>
+            </figure>
+          );
+        })}
         <div>VS</div>
-        <figure>
-          <img src={imgCopyAndPaste} alt="" />
-          <figcaption>복붙 없이 개발</figcaption>
-        </figure>
       </main>
     </StyledGame>
   );
@@ -49,11 +116,12 @@ const StyledGame = styled.div`
   main {
     position: relative;
     flex: 1;
+    overflow: hidden;
 
     div {
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: calc(50% + 5rem);
       transform: translate(-50%, -100%);
       font-size: 10rem;
       color: #ffb1b7;
@@ -64,7 +132,7 @@ const StyledGame = styled.div`
     figure {
       position: relative;
       width: 50%;
-      height: calc(100% - 10rem);
+      height: 100%;
       overflow: hidden;
       cursor: pointer;
     }
@@ -94,6 +162,7 @@ const StyledGame = styled.div`
       top: 50%;
       transform: translate(-50%, -50%);
       font-size: 6rem;
+      line-height: 140%;
       word-break: keep-all;
       text-align: center;
       color: #fff;
