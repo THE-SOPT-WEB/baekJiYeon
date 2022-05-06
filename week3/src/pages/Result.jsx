@@ -1,16 +1,20 @@
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Result() {
+  const location = useLocation();
+  const { result } = location.state;
+
   return (
     <StyledResult>
       <header>
         <div>가장 킹받는 상황 1위</div>
-        <div></div>
+        <div>{result.caption}</div>
       </header>
       <StyledImgArea>
         <div>👑</div>
-        <img src="" alt="" />
+        <img src={result.img} alt={result.caption} />
       </StyledImgArea>
       <StyledBtnGroup>
         <Link to="/">다시하기</Link>
@@ -34,6 +38,7 @@ const StyledResult = styled.div`
   header > div:first-child {
     font-size: 4rem;
     margin-bottom: 2rem;
+    color: #ffb1b7;
   }
 
   header > div:last-child {
@@ -43,7 +48,7 @@ const StyledResult = styled.div`
 
 const StyledImgArea = styled.div`
   position: relative;
-  margin: 3rem 0;
+  margin: 3rem auto;
   width: 50rem;
 
   div {
