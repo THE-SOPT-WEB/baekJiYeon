@@ -29,18 +29,18 @@ function Game() {
 
   const makeMatchList = (matchItemList) => {
     const matchList = [];
-    let match = [];
-    matchItemList.forEach((item, i) => {
-      if (i % 2 === 0) {
-        match = [item];
-        return;
-      }
-      matchList.push([...match, item]);
-    });
+    for (let i = 0; i < matchItemList.length; i += 2) {
+      matchList.push(matchItemList.slice(i, i + 2));
+    }
     return matchList;
   };
 
   const [matchList, setMatchList] = useState(() => makeMatchList(matchItemList));
+
+  const findRound = (length) => {
+    const round = length === 1 ? '결승' : `${length * 2}강`;
+    return round;
+  };
 
   useEffect(() => {
     if (matchList.length === matchIndex) {
@@ -61,7 +61,7 @@ function Game() {
   return (
     <StyledGame>
       <header>
-        <h1>킹받는 개발 상황 {matchList.length === 1 ? '결승' : `${matchList.length * 2}강`}</h1>
+        <h1>킹받는 개발 상황 {findRound(matchList.length)}</h1>
         <h2>
           {matchIndex + 1} / {matchList.length}
         </h2>
